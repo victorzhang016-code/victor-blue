@@ -1,0 +1,119 @@
+/* Victor Blue · Codex Windows main renderer */
+:root {
+  --victor-edge: #0e2a5a;
+  --victor-mid: #153a75;
+  --victor-center: #1e4b8f;
+  --victor-ink: #f2f0e8;
+  --victor-muted: #c2d1e7;
+  --victor-accent: #a3cdfb;
+  --victor-silver: #465872;
+  --victor-gradient: radial-gradient(ellipse 80% 70% at 50% 50%,
+    var(--victor-center) 0%, var(--victor-mid) 45%, var(--victor-edge) 100%);
+  color-scheme: dark;
+  background-color: var(--victor-edge);
+}
+
+body {
+  background-color: var(--victor-edge);
+  background-image: var(--victor-gradient);
+}
+
+/* Text selection uses the same near-black family as the window chrome. */
+body::selection,
+body ::selection {
+  background-color: #060910;
+  color: #f2f8ff;
+}
+
+[data-app-shell-frame="true"] {
+  --color-text: var(--victor-ink);
+  --color-text-secondary: var(--victor-muted);
+  --color-surface: var(--victor-edge);
+  --codex-theme-accent-text: var(--victor-accent);
+}
+
+[data-app-shell-main-surface="default"] {
+  background-color: var(--victor-edge) !important;
+  background-image: var(--victor-gradient) !important;
+}
+
+#app-shell-sidebar,
+aside[data-app-shell-left-panel-appearance] {
+  background-color: var(--victor-silver) !important;
+  background-image:
+    radial-gradient(circle, rgba(241, 246, 255, .045) .3px, transparent .75px),
+    radial-gradient(circle, rgba(8, 16, 31, .085) .3px, transparent .8px),
+    linear-gradient(155deg, #4e6077, #465872 58%, #41526e) !important;
+  background-size: 3px 4px, 5px 5px, 100% 100%;
+  background-position: 0 0, 2px 1px, 0 0;
+  box-shadow: inset -1px 0 0 rgba(193, 208, 229, .38);
+}
+
+#app-shell-sidebar :where(
+  [data-app-action-sidebar-thread-row],
+  [data-app-action-sidebar-section-toggle],
+  [data-app-action-sidebar-project-row]
+) {
+  --color-text-secondary: #e8eff8;
+  --color-text-tertiary: #e3ecf7;
+}
+
+#app-shell-sidebar [data-app-action-sidebar-thread-row] [data-thread-title] {
+  color: var(--victor-ink);
+}
+
+#app-shell-sidebar [data-app-action-sidebar-thread-row] :where(button, [role="button"]) {
+  --button-text-color: #e3ecf7;
+  --button-text-color-hover: #f2f0e8;
+}
+
+/* The menu and its layout inset share one continuous background. */
+[data-app-shell-frame="true"][data-app-shell-application-menu-header] {
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 2px, rgba(237, 246, 255, .035) 2px 4px),
+    radial-gradient(ellipse 65% 145% at 65% 0%, #172945 0%, transparent 100%),
+    linear-gradient(#0b0d11, #0b0d11);
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 100% calc(var(--height-toolbar-sm, 36px) + var(--app-shell-page-header-offset, 8px));
+}
+
+[data-app-shell-frame="true"][data-app-shell-application-menu-header]
+  [class*="ApplicationMenuTopBar-"] {
+  background-color: transparent !important;
+}
+
+nav[data-app-navigation-rail] {
+  background-color: #0b0d11;
+}
+
+#app-shell-sidebar [data-app-action-sidebar-thread-row][aria-current="page"] {
+  background-color: #31507d !important;
+  box-shadow: inset 2px 0 #a3cdfb;
+}
+
+@media (min-width: 970px) {
+  [class*="ApplicationMenuTopBar-"]::after {
+    content: "Think, Passion, Brave and Love.";
+    position: fixed;
+    inset: 7px auto auto 50%;
+    transform: translateX(-50%);
+    display: grid;
+    place-items: center;
+    inline-size: 292px;
+    block-size: 22px;
+    box-sizing: border-box;
+    padding-inline-start: 39px;
+    border: 1px solid #a9c6e6;
+    border-radius: 6px;
+    background:
+      radial-gradient(circle at 10px 10px, #ffb1a7 0, #f05951 3px, transparent 4px),
+      radial-gradient(circle at 22px 10px, #ffebac 0, #edaa2d 3px, transparent 4px),
+      radial-gradient(circle at 34px 10px, #b9e5ff 0, #358beb 3px, transparent 4px),
+      linear-gradient(#83aada, #83aada) 44px center / 1px 10px no-repeat,
+      var(--victor-gradient);
+    color: var(--victor-ink);
+    font: bold italic 12px/1 Georgia, serif;
+    pointer-events: none;
+  }
+}

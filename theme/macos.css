@@ -1,0 +1,11 @@
+/* macOS can use native window controls instead of the Windows menu bar. */
+:root[data-codex-os="darwin"]
+  [data-app-shell-frame="true"]:not([data-app-shell-application-menu-header]) {
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 2px, rgba(237, 246, 255, .035) 2px 4px),
+    radial-gradient(ellipse 65% 145% at 65% 0%, #172945 0%, transparent 100%),
+    linear-gradient(#0b0d11, #0b0d11);
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 100% var(--height-toolbar, 52px);
+}
